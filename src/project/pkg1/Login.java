@@ -10,6 +10,10 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Login extends JFrame implements ActionListener {
+    JButton login,Signup;
+    JTextField nameTextField;
+    JLabel name,password;
+    JPasswordField passwordField;
     Login(){
         setLayout(null);
        
@@ -22,27 +26,27 @@ public class Login extends JFrame implements ActionListener {
         add(heading);
         
         //bank username headig//
-           JLabel name=new JLabel("Usernaem");
+            name=new JLabel("Usernaem");
         name.setFont(new Font("Raleway",Font.BOLD,28));
         name.setBounds(120,150,150,30);
         add(name);
         
-        JTextField nameTextField=new JTextField();
+         nameTextField=new JTextField();
         nameTextField.setBounds(300,150,230,30);
         add(nameTextField);
         
         //password//
-             JLabel password=new JLabel("Password");
+         password=new JLabel("Password");
         password.setFont(new Font("Raleway",Font.BOLD,28));
        password.setBounds(120,220,400,40);
         add(password);
         
-        JTextField passwordTextField=new JTextField();
-        passwordTextField.setBounds(300, 220, 230, 30);
-        add(passwordTextField);
+         passwordField=new JPasswordField();
+        passwordField.setBounds(300, 220, 230, 30);
+        add(passwordField);
         
         //buttons//
-        JButton login=new JButton("Log IN");
+         login=new JButton("Log IN");
         login.setBounds(300, 300, 100  , 30);
          login.setBackground(Color.orange);
         login.setForeground(Color.white);
@@ -50,7 +54,7 @@ public class Login extends JFrame implements ActionListener {
         add(login);
         
         
-        JButton Signup=new JButton("Log IN");
+         Signup=new JButton("Sign up");
         Signup.setBounds(430, 300, 100  , 30);
         Signup.setBackground(Color.orange);
         Signup.setForeground(Color.white);
@@ -58,10 +62,7 @@ public class Login extends JFrame implements ActionListener {
         
         add(Signup);
         
-        
-        
-        
-             getContentPane().setBackground(Color.WHITE);
+        getContentPane().setBackground(Color.WHITE);
         setSize(800,400);
         setVisible(true);
         setLocation(350, 200);
@@ -73,6 +74,14 @@ public class Login extends JFrame implements ActionListener {
         
     }
     public void actionPerformed(ActionEvent action){
+        if(action.getSource()==Signup){
+            setVisible(false);
+            Signup ob1=new Signup();
+           
+        }
+        else if (action.getSource()== login){
+            
+        }
         
     }
     
