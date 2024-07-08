@@ -5,11 +5,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 
-public class Signup extends JFrame {
+public class Signup extends JFrame implements ActionListener{
     JLabel name,email,password,gender,city;
 JTextField nameTextField,emailTextField,cityTextField;
 JPasswordField passwordTextField;
     JButton Signup;
+    JRadioButton male,female;
     Signup(){
         setLayout(null);
        setTitle("Signup Form");
@@ -55,11 +56,12 @@ JPasswordField passwordTextField;
         gender.setBounds(120,300,150,40);
         add(gender);
         
-         JRadioButton male=new JRadioButton("Male");
+          male=new JRadioButton("Male");
         male.setBounds(300,305,100,35);
         male.setBackground(Color.white);
         add(male);
-         JRadioButton female=new JRadioButton("Female");
+        
+          female=new JRadioButton("Female");
         female.setBounds(420,305,100,35);
         female.setBackground(Color.white);
         
@@ -82,6 +84,7 @@ JPasswordField passwordTextField;
         Signup.setBounds(120, 465, 410, 35);
         Signup.setBackground(Color.orange);
         Signup.setForeground(Color.white);
+        Signup.addActionListener(this);
         add(Signup);
        
         
@@ -94,6 +97,62 @@ JPasswordField passwordTextField;
         
         
     }
+    public void actionPerformed(ActionEvent action)
+    {
+    String name=nameTextField.getText();
+    String email=emailTextField.getText();
+    
+    String pass=passwordTextField.getText();
+    String city=cityTextField.getText();
+    String gender =null;
+    if(male.isSelected() ){
+        gender="male";
+        
+    }else if (female.isSelected()){
+        gender="female";
+    }
+    else{
+        JOptionPane.showMessageDialog(null, "Gender is required");
+        
+    }
+    try{
+        
+        if(name.equals("")){
+            JOptionPane.showMessageDialog(null,"Name is Require!");}
+        else if(email.equals("")){
+        JOptionPane.showMessageDialog(null, "email is required");
+    }
+          else if(pass.equals("")){
+        JOptionPane.showMessageDialog(null, "password is required");
+    }
+            else if(city.equals("")){
+        JOptionPane.showMessageDialog(null, "city is required");
+    }
+             
+       
+    
+        
+            
+       
+       
+        else{
+            connection connect=new connection();
+            String querry="insert into signup values('"+name+"','"+email+"','"+pass+"','"+city+"','"+gender+"')";
+            connect.s.execute(querry);
+           JOptionPane.showMessageDialog(null, "succussefully signup");
+           setVisible(false);
+           Login login=new Login();
+           login.setVisible(true);
+        }
+        
+    }catch(Exception e){
+        System.out.println(e);
+    }
+    
+    
+    
+    }
+            
     public static void main(String args[]){
        new Signup();
     }
