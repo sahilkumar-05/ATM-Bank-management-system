@@ -18,6 +18,7 @@ public class Login extends JFrame implements ActionListener {
         setLayout(null);
        
         setTitle("Bank Management System");
+              
     
                 
         JLabel heading=new JLabel("Welcome To Bank");
@@ -63,6 +64,7 @@ public class Login extends JFrame implements ActionListener {
         add(Signup);
         
         getContentPane().setBackground(Color.WHITE);
+        
         setSize(800,400);
         setVisible(true);
         setLocation(350, 200);
