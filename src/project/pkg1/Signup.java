@@ -18,6 +18,7 @@ JPasswordField passwordTextField;
                 
         JLabel heading=new JLabel("Signup Form");
         heading.setFont(new Font("Raleway",Font.BOLD,38));
+        heading.setForeground(Color.decode("#002446"));
        heading.setBounds(250,20,400,60);
         add(heading);
         
@@ -25,6 +26,7 @@ JPasswordField passwordTextField;
          name=new JLabel("Username");
         name.setFont(new Font("Raleway",Font.BOLD,20));
         name.setBounds(120,150,150,40);
+        name.setForeground(Color.decode("#002446"));
         add(name);
         
          nameTextField=new JTextField();
@@ -33,6 +35,7 @@ JPasswordField passwordTextField;
         
             email=new JLabel("Email");
         email.setFont(new Font("Raleway",Font.BOLD,20));
+        email.setForeground(Color.decode("#002446"));
         email.setBounds(120,200,150,40);
         add(email);
         
@@ -42,6 +45,7 @@ JPasswordField passwordTextField;
         
          password=new JLabel("Password");
         password.setFont(new Font("Raleway",Font.BOLD,20));
+        password.setForeground(Color.decode("#002446"));
         password.setBounds(120,250,150,40);
         add(password);
         
@@ -53,6 +57,7 @@ JPasswordField passwordTextField;
         
               gender=new JLabel("Gender");
         gender.setFont(new Font("Raleway",Font.BOLD,20));
+        gender.setForeground(Color.decode("#002446"));
         gender.setBounds(120,300,150,40);
         add(gender);
         
@@ -72,6 +77,7 @@ JPasswordField passwordTextField;
         
                       city=new JLabel("City");
         city.setFont(new Font("Raleway",Font.BOLD,20));
+        city.setForeground(Color.decode("#002446"));
         city.setBounds(120,350,150,40);
         add(city);
         
@@ -82,7 +88,7 @@ JPasswordField passwordTextField;
         
         Signup=new JButton("Sign up");
         Signup.setBounds(120, 465, 410, 35);
-        Signup.setBackground(Color.orange);
+        Signup.setBackground(Color.decode("#002446"));
         Signup.setForeground(Color.white);
         Signup.addActionListener(this);
         add(Signup);
@@ -105,16 +111,7 @@ JPasswordField passwordTextField;
     String pass=passwordTextField.getText();
     String city=cityTextField.getText();
     String gender =null;
-    if(male.isSelected() ){
-        gender="male";
-        
-    }else if (female.isSelected()){
-        gender="female";
-    }
-    else{
-        JOptionPane.showMessageDialog(null, "Gender is required");
-        
-    }
+    
     try{
         
         if(name.equals("")){
@@ -124,21 +121,22 @@ JPasswordField passwordTextField;
     }
           else if(pass.equals("")){
         JOptionPane.showMessageDialog(null, "password is required");
-    }
-            else if(city.equals("")){
-        JOptionPane.showMessageDialog(null, "city is required");
-    }
-             
-       
-    
         
+    }
+          else if(!male.isSelected() && !female.isSelected()) {
             
-       
-       
+                JOptionPane.showMessageDialog(null, "gender is require");
+                }          
+            else if(city.equals("")){
+        JOptionPane.showMessageDialog(null, "city is required");    
+           }
+      
         else{
             connection connect=new connection();
-            String querry="insert into signup values('"+name+"','"+email+"','"+pass+"','"+city+"','"+gender+"')";
-            connect.s.execute(querry);
+            String querry1="insert into signup values('"+name+"','"+email+"','"+pass+"','"+city+"','"+gender+"')";
+            String querry2="insert into login values('"+name+"','"+pass+"')";
+            connect.s.execute(querry1);
+            connect.s.execute(querry2);
            JOptionPane.showMessageDialog(null, "succussefully signup");
            setVisible(false);
            Login login=new Login();
