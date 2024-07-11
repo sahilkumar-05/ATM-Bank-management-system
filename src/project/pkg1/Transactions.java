@@ -46,6 +46,7 @@ public class Transactions extends JFrame implements ActionListener {
         image.add(balance);
     
         setSize(1920, 1080);
+        
         setLocation(0,0);
         setVisible(true);
     }
