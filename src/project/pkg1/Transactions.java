@@ -3,8 +3,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 public class Transactions extends JFrame implements ActionListener {
-    JButton withdraw;
-    public Transactions() {
+    JButton withdraw,deposit;
+    String password,Name;
+    public Transactions(String password,String Name) {
+        this.password=password;
+        this.Name=Name;
         setLayout(null);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("images/background.png"));
         Image i2 = i1.getImage().getScaledInstance(1920, 1080, Image.SCALE_DEFAULT);
@@ -30,11 +33,12 @@ public class Transactions extends JFrame implements ActionListener {
         image.add(withdraw);
         
         
-          JButton deposit=new JButton("Deposit");
+           deposit=new JButton("Deposit");
         deposit.setBounds(120,750,250,70);
         deposit.setFont(new Font("Sanserif",Font.BOLD,45));
         deposit.setBackground(Color.decode("#002446"));
         deposit.setForeground(Color.white);
+        deposit.addActionListener(this);
         image.add(deposit);
         
         
@@ -52,8 +56,10 @@ public class Transactions extends JFrame implements ActionListener {
     }
    public void actionPerformed(ActionEvent action)
     {
-    if (action.getSource()==withdraw){
-        JOptionPane.showMessageDialog(null, "successfully withdrawed amount");
+    if (action.getSource()==deposit){
+       setVisible(false);
+    new Deposit(password,Name).setVisible(true);
+       
     }
     else{
         setVisible(false);
@@ -61,6 +67,6 @@ public class Transactions extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new Transactions();
+        new Transactions("","");
     }
 }

@@ -15,6 +15,7 @@ public class Login extends JFrame implements ActionListener {
     JTextField nameTextField;
     JLabel name,password;
     JPasswordField passwordField;
+    
     Login(){
         setLayout(null);
        
@@ -88,15 +89,15 @@ public class Login extends JFrame implements ActionListener {
     } else if (action.getSource() == login) {
         connection conn = new connection();
         String Name = nameTextField.getText();
-        String Password = new String(passwordField.getPassword()); // Use getPassword() for security
-        String query = "SELECT * FROM login WHERE Name = '" + Name + "' AND Password = '" + Password + "'";
+        String password = new String(passwordField.getPassword()); // Use getPassword() for security
+        String query = "SELECT * FROM login WHERE Name = '" + Name + "' AND Password = '" + password + "'";
         
         try {
             ResultSet result = conn.s.executeQuery(query);
             if(result.next()) {
                 JOptionPane.showMessageDialog(null, "Login Succussefully");
                 setVisible(false);
-                new Transactions().setVisible(true);
+                new Transactions(password,Name).setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Incorrect Username or Password!!");
             }

@@ -138,7 +138,9 @@ JPasswordField passwordTextField;
             connect.s.execute(querry1);
             connect.s.execute(querry2);
            JOptionPane.showMessageDialog(null, "succussefully signup");
+           
            setVisible(false);
+           
            Login login=new Login();
            login.setVisible(true);
         }
