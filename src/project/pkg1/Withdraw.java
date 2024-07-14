@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 
-public class Deposit extends JFrame implements ActionListener {
-    JButton back,deposit;
+public class Withdraw extends JFrame implements ActionListener {
+    JButton back,withdraw;
     String password,Name;
     JTextField amount;
     
-    Deposit(String password,String Name){
+    Withdraw(String password,String Name){
         this.Name=Name;
         this.password=password;
    setLayout(null);
@@ -22,7 +22,7 @@ public class Deposit extends JFrame implements ActionListener {
             add(image); 
         
         
-        JLabel heading=new  JLabel("Enter The Amount You Want To Deposit");
+        JLabel heading=new  JLabel("Enter The Amount You Want To Withdraw");
           heading.setBounds(250,340,1400,200);
         heading.setForeground(Color.decode("#002446"));
         heading.setFont(new Font("Raleway",Font.BOLD,70));
@@ -36,13 +36,13 @@ public class Deposit extends JFrame implements ActionListener {
         image.add(amount);
         
         
-      deposit=new JButton("Deposit");
-        deposit.setBounds(600,750,250,80);
-        deposit.setBackground(Color.decode("#002446"));
-        deposit.setFont(new Font("Raleway",Font.BOLD,35));
-        deposit.setForeground(Color.white);
-        deposit.addActionListener(this);
-        image.add(deposit);
+      withdraw=new JButton("Withdraw");
+        withdraw.setBounds(600,750,250,80);
+        withdraw.setBackground(Color.decode("#002446"));
+        withdraw.setFont(new Font("Raleway",Font.BOLD,35));
+        withdraw.setForeground(Color.white);
+        withdraw.addActionListener(this);
+        image.add(withdraw);
         
            back=new JButton("Back");
         back.setBounds(950,750,250,80);
@@ -63,23 +63,19 @@ public class Deposit extends JFrame implements ActionListener {
    @Override
 public void actionPerformed(ActionEvent action) {
     
-    if(action.getSource()==deposit){
+    if(action.getSource()==withdraw){
         String number = amount.getText();
         Date date = new Date();
-         if (number.equals("")) {
+        if(number.equals("")){
             JOptionPane.showMessageDialog(null, "Please enter amount");
-        } else if (!number.matches("%d")) { 
-            JOptionPane.showMessageDialog(null, "Please enter a valid positive number");
-        } 
-        
-     
+           
+        }
         else {
             try {
-                
                 connection conn=new connection();
-                String query ="INSERT INTO bank( Name ,Password, date, type, amount) VALUES('"+Name+"', '"+password+"', '"+date+"', 'Deposit', '"+number+"')";
+                String query ="INSERT INTO bank( Name ,Password, date, type, amount) VALUES('"+Name+"', '"+password+"', '"+date+"', 'Withdraw', '"+number+"')";
                 conn.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Rs "+number+"Deposited Successfully");
+                JOptionPane.showMessageDialog(null, "Rs "+number+"Withdrawed Successfully");
                 setVisible(false);
                 new Transactions(password,Name).setVisible(true);
                 
@@ -97,6 +93,6 @@ public void actionPerformed(ActionEvent action) {
     
 }
 public static void main(String args[]){
-new Deposit("","");
+new Withdraw("","");
 
 }}

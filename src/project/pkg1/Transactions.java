@@ -3,7 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 public class Transactions extends JFrame implements ActionListener {
-    JButton withdraw,deposit;
+    JButton withdraw,deposit,balance;
     String password,Name;
     public Transactions(String password,String Name) {
         this.password=password;
@@ -42,11 +42,12 @@ public class Transactions extends JFrame implements ActionListener {
         image.add(deposit);
         
         
-        JButton balance=new JButton("Balance");
+         balance=new JButton("Balance");
         balance.setBounds(120,910,250,70);
         balance.setFont(new Font("raleway",Font.BOLD,45));
         balance.setBackground(Color.decode("#002446"));
         balance.setForeground(Color.white);
+        balance.addActionListener(this);
         image.add(balance);
     
         setSize(1920, 1080);
@@ -61,10 +62,17 @@ public class Transactions extends JFrame implements ActionListener {
     new Deposit(password,Name).setVisible(true);
        
     }
-    else{
+    else if(action.getSource()==withdraw){
         setVisible(false);
+        new Withdraw(password,Name).setVisible(true);
+    }
+    else if (action.getSource()==balance){
+        setVisible(false);
+        new Balance(password,Name).setVisible(true);
     }
     }
+   
+    
 
     public static void main(String[] args) {
         new Transactions("","");
