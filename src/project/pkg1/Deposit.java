@@ -68,8 +68,6 @@ public void actionPerformed(ActionEvent action) {
         Date date = new Date();
          if (number.equals("")) {
             JOptionPane.showMessageDialog(null, "Please enter amount");
-        } else if (!number.matches("%d")) { 
-            JOptionPane.showMessageDialog(null, "Please enter a valid positive number");
         } 
         
      
@@ -79,7 +77,7 @@ public void actionPerformed(ActionEvent action) {
                 connection conn=new connection();
                 String query ="INSERT INTO bank( Name ,Password, date, type, amount) VALUES('"+Name+"', '"+password+"', '"+date+"', 'Deposit', '"+number+"')";
                 conn.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Rs "+number+"Deposited Successfully");
+                JOptionPane.showMessageDialog(null, "Rs "+number+" Deposited Successfully");
                 setVisible(false);
                 new Transactions(password,Name).setVisible(true);
                 

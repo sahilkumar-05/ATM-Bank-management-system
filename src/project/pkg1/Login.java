@@ -30,7 +30,7 @@ public class Login extends JFrame implements ActionListener {
         add(heading);
         
         //bank username headig//
-            name=new JLabel("Usernaem");
+            name=new JLabel("Username");
         name.setFont(new Font("Raleway",Font.BOLD,28));
      name.setForeground(Color.decode("#002446"));
         name.setBounds(120,150,150,30);

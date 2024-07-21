@@ -75,7 +75,7 @@ public void actionPerformed(ActionEvent action) {
                 connection conn=new connection();
                 String query ="INSERT INTO bank( Name ,Password, date, type, amount) VALUES('"+Name+"', '"+password+"', '"+date+"', 'Withdraw', '"+number+"')";
                 conn.s.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "Rs "+number+"Withdrawed Successfully");
+                JOptionPane.showMessageDialog(null, "Rs "+number+" Withdrawed Successfully");
                 setVisible(false);
                 new Transactions(password,Name).setVisible(true);
                 
